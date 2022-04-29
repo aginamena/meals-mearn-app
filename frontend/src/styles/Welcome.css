@@ -1,0 +1,21 @@
+#welcomePage {
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#exampleInputEmail1 {
+  width: 350px;
+}
+#welcomePage > div {
+  width: 490px;
+  text-align: center;
+  color: white;
+}
+#welcomePage form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
