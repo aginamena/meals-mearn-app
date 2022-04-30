@@ -14,8 +14,13 @@
   text-align: center;
   color: white;
 }
-#welcomePage form {
+#formElement {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
+
+/* #welcomePage .form-group,
+#welcomePage input {
+  width: 100%;
+} */
