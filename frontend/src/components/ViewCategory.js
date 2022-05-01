@@ -28,11 +28,7 @@ function ViewCategory() {
 
             :
             data ?
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gridGap: "25px"
-                }} className="container">
+                <div id="meals" className="container">
                     {
                         data.map((meal, index) => (
                             <Meal
@@ -40,6 +36,9 @@ function ViewCategory() {
                                 key={meal.idMeal}
                                 image={meal.strMealThumb}
                                 ViewCategory={true}
+                                tags={meal.strTags}
+                                instructions={meal.strInstructions}
+                                youtube={meal.strYoutube}
                             />
                         ))
                     }

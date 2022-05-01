@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Meal from './Meal';
 import "../styles/Meals.css"
+import ReactLoading from 'react-loading';
 
 function Meals({ searchName }) {
     const [meals, setMeals] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
+
     const [t, setT] = useState([]);
     var searchedItems = [];
     useEffect(
@@ -14,6 +17,7 @@ function Meals({ searchName }) {
                 setMeals(data.categories);
             }
             fetchData()
+            setIsLoading(false);
         }
         , [])
     async function searchForItem() {
@@ -26,44 +30,24 @@ function Meals({ searchName }) {
     }
 
     return (
-        <div id="meals" className='container'>
-            {
+        isLoading ?
+            <div style={{ display: 'flex', justifyContent: "center", marginBottom: "50px" }}>
+                <ReactLoading type={"spin"} color={"#0d6efd"} height={'50px'} width={'50px'} />
+            </div>
 
-                meals.map((meal, index) => (
-                    <Meal
-                        name={meal.strCategory}
-                        description={meal.strCategoryDescription}
-                        key={meal.idCategory}
-                        image={meal.strCategoryThumb}
-                    />
-                ))
-            }
-            {/* {searchName.length == 0 ?
-                meals.map((meal, index) => (
-                    <Meal
-                        name={meal.strCategory}
-                        description={meal.strCategoryDescription}
-                        key={meal.idCategory}
-                        image={meal.strCategoryThumb}
-                    />
-                ))
-
-                : */}
-            {/* // searchForItem() && t.map((meal, index) => <div key={index}>{meal.strMeal}</div>)
-                searchForItem() ?
-                    t.map((meal, index) => (
+            :
+            <div id="meals" className='container'>
+                {
+                    meals.map(meal => (
                         <Meal
                             name={meal.strCategory}
-                            key={meal.idMeal}
-                            image={meal.strMealThumb}
+                            description={meal.strCategoryDescription}
+                            key={meal.idCategory}
+                            image={meal.strCategoryThumb}
                         />
                     ))
-                    // searchedItems.map(() => (<div>sdfasdfasdf</div>))
-
-                    : */}
-            {/* <div style={{ fontSize: "18px", fontWeight: "bold" }}>Item "{searchName}" doesn't exist</div> */}
-
-        </div>
+                }
+            </div>
     )
 }
 
