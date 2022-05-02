@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import "../styles/Welcome.css"
+
 
 function Welcome(props) {
     const navigate = useNavigate();
     function handleSubmit(event) {
         event.preventDefault();
-        const value = document.querySelector("#inputElement").value;
-        // history.push()
-        navigate("./viewcategory/" + value)
-        // history.push(null, "", )
-        // props.setItem(value);
+        if (props.isLoggedIn) {
+            const value = document.querySelector("#inputElement").value;
+            navigate("./viewcategory/" + value)
+        }
 
     }
     return (
@@ -24,15 +23,25 @@ function Welcome(props) {
                     onSubmit={event => handleSubmit(event)}
                 >
                     <input type="text" className="form-control" id="inputElement" placeholder="Enter meal's name" required />
-                    {/* <Link to={"/viewcategory/" + name}>
-                        <button className="btn btn-primary"> View Category</button>
-                    </Link> */}
-                    <button style={{ width: "150px", marginLeft: "10px" }} type="submit" className="btn btn-primary">Search Meal</button>
+                    {
+                        props.isLoggedIn ?
+                            <button
+                                style={{ width: "150px", marginLeft: "10px" }}
+                                type="submit"
+                                className="btn btn-primary"
+                            >Search Meal</button>
+                            :
+                            <button
+                                style={{ width: "150px", marginLeft: "10px" }}
+                                type="submit"
+                                className="btn btn-primary"
+                                data-toggle="modal"
+                                data-target="#errorModal"
+                            >Search Meal</button>
+                    }
                 </form>
-
             </div>
         </div>
-
     )
 }
 

@@ -3,12 +3,12 @@ import Meal from './Meal';
 import "../styles/Meals.css"
 import ReactLoading from 'react-loading';
 
-function Meals({ searchName }) {
+function Meals({ searchName, isLoggedin }) {
     const [meals, setMeals] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
-    const [t, setT] = useState([]);
-    var searchedItems = [];
+    // const [t, setT] = useState([]);
+    // var searchedItems = [];
     useEffect(
         () => {
             async function fetchData() {
@@ -20,14 +20,14 @@ function Meals({ searchName }) {
             setIsLoading(false);
         }
         , [])
-    async function searchForItem() {
-        const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + searchName)
-        const data = await response.json()
-        // searchedItems = data.meals
-        setT(data.meals);
-        console.log(t)
-        return t.length > 0;
-    }
+    // async function searchForItem() {
+    //     const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + searchName)
+    //     const data = await response.json()
+    //     // searchedItems = data.meals
+    //     setT(data.meals);
+    //     console.log(t)
+    //     return t.length > 0;
+    // }
 
     return (
         isLoading ?
@@ -44,6 +44,7 @@ function Meals({ searchName }) {
                             description={meal.strCategoryDescription}
                             key={meal.idCategory}
                             image={meal.strCategoryThumb}
+                            isLoggedin={isLoggedin}
                         />
                     ))
                 }

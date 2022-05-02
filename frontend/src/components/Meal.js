@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Modal from './Modal';
+import CategoryModal from './CategoryModal';
 
-function Meal({ name, description, image, ViewCategory, tags, instructions, youtube }) {
+function Meal({ name, description, image, ViewCategory, tags, instructions, youtube, isLoggedin }) {
     return (
         <>
             <div className="card">
@@ -15,16 +15,19 @@ function Meal({ name, description, image, ViewCategory, tags, instructions, yout
                     {
                         description && <p className="card-text">{description.length < 100 ? description : description.substring(0, 101) + " . . ."}</p>
                     }
-                    {ViewCategory ? <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Order Now</button> :
-                        <Link to={"/viewcategory/" + name}>
-                            <button className="btn btn-primary"> View Category</button>
-                        </Link>
+                    {
+                        ViewCategory ? <button className="btn btn-primary" data-toggle="modal" data-target="#categoryModal"> Order Now</button> :
+                            isLoggedin ? <Link to={"/viewcategory/" + name}>
+                                <button className="btn btn-primary"> View Category</button> :
+                            </Link>
+                                : <button className="btn btn-primary" data-toggle="modal"
+                                    data-target="#errorModal"> View Category</button>
 
                     }
 
                 </div>
             </div>
-            <Modal
+            <CategoryModal
                 name={name}
                 image={image}
                 tags={tags}

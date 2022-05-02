@@ -1,10 +1,9 @@
 import React from 'react'
 import "../styles/Modal.css"
-import { Link } from "react-router-dom"
 
-function Modal(props) {
+function CategoryModal(props) {
     return (
-        <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -40,4 +39,4 @@ function Modal(props) {
     )
 }
 
-export default Modal
+export default CategoryModal
