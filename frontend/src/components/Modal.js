@@ -33,7 +33,6 @@ function Modal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
