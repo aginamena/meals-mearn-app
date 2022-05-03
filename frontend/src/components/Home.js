@@ -8,9 +8,9 @@ function Home(props) {
 
     return (
         <>
-            <Welcome setItem={value => setItem(value)} isLoggedin={props.isLoggedin} />
+            <Welcome setItem={value => setItem(value)} isLoggedIn={props.isLoggedIn} />
             <h1 style={{ textAlign: "center", margin: "50px 0" }}>All Categories</h1>
-            <Meals searchName={item} isLoggedin={props.isLoggedin} />
+            <Meals searchName={item} isLoggedIn={props.isLoggedIn} />
             <ErrorModal />
         </>
 

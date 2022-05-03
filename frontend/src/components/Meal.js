@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import CategoryModal from './CategoryModal';
 
-function Meal({ name, description, image, ViewCategory, tags, instructions, youtube, isLoggedin }) {
+function Meal({ name, description, image, ViewCategory, tags, instructions, youtube, isLoggedIn }) {
     return (
         <>
             <div className="card">
@@ -17,7 +17,7 @@ function Meal({ name, description, image, ViewCategory, tags, instructions, yout
                     }
                     {
                         ViewCategory ? <button className="btn btn-primary" data-toggle="modal" data-target="#categoryModal"> Order Now</button> :
-                            isLoggedin ? <Link to={"/viewcategory/" + name}>
+                            isLoggedIn ? <Link to={"/viewcategory/" + name}>
                                 <button className="btn btn-primary"> View Category</button> :
                             </Link>
                                 : <button className="btn btn-primary" data-toggle="modal"

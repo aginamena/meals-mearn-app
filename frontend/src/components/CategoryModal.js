@@ -3,7 +3,7 @@ import "../styles/Modal.css"
 
 function CategoryModal(props) {
     return (
-        <div className="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div className="modal fade" id="categoryModal" role="dialog" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">

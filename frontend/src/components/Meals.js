@@ -3,7 +3,7 @@ import Meal from './Meal';
 import "../styles/Meals.css"
 import ReactLoading from 'react-loading';
 
-function Meals({ searchName, isLoggedin }) {
+function Meals({ searchName, isLoggedIn }) {
     const [meals, setMeals] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +44,7 @@ function Meals({ searchName, isLoggedin }) {
                             description={meal.strCategoryDescription}
                             key={meal.idCategory}
                             image={meal.strCategoryThumb}
-                            isLoggedin={isLoggedin}
+                            isLoggedIn={isLoggedIn}
                         />
                     ))
                 }
