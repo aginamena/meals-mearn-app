@@ -6,6 +6,7 @@ import Header from './components/Header';
 import ViewCategory from './components/ViewCategory';
 import links from "./utils/urls";
 import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +31,8 @@ function App() {
       <Routes>
         <Route exact path='/' element={< Home isLoggedIn={isLoggedIn} />}></Route>
         <Route exact path='/viewcategory/:name' element={< ViewCategory />}></Route>
-        <Route exact path="/login" element={<Login />}></Route>
+        <Route exact path="/login" element={<Login loginUser={() => setIsLoggedIn(true)} />}></Route>
+        <Route exact path="/signup" element={<SignUp loginUser={() => setIsLoggedIn(true)} />}></Route>
       </Routes>
     </Router>
   );

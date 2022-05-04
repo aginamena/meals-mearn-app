@@ -2,7 +2,7 @@ import React from 'react'
 import "../styles/Header.css";
 import { Link } from "react-router-dom"
 
-function Header() {
+function Header(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light container">
             <Link id="RouterNavLink" to="/">Meals</Link>
@@ -12,11 +12,24 @@ function Header() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <Link to="/login">
-                        <button type="button" className="btn btn-primary">Login</button>
-                    </Link>
+                    {
+                        props.isLoggedIn ?
+                            <Link to="/login">
+                                <button type="button" className="btn btn-primary">Log out</button>
+                            </Link>
+                            :
+                            <>
+                                <Link to="/login">
+                                    <button type="button" className="btn btn-primary">Log in</button>
+                                </Link>
 
-                    <button type="button" className="btn btn-secondary">Signup</button>
+                                <Link to="/signup">
+                                    <button type="button" className="btn btn-secondary">Sign up</button>
+                                </Link>
+
+                            </>
+                    }
+
                 </div>
             </div>
         </nav>

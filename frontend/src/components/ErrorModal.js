@@ -13,14 +13,17 @@ function ErrorModal() {
                         </button>
                     </div>
                     <div className="modal-body">
-                        You have to login if you already have an account
-                        or signup if you don't have an account.
+                        You have to log in if you already have an account
+                        or sign up if you don't have an account.
                     </div>
                     <div className="modal-footer">
                         <Link to="/login">
-                            <button type="button" className="btn btn-primary">Login</button>
+                            <button type="button" className="btn btn-primary">Log in</button>
                         </Link>
-                        <button type="button" className="btn btn-secondary">Signup</button>
+                        <Link to="/signup">
+                            <button type="button" className="btn btn-secondary">Sign up</button>
+                        </Link>
+
                     </div>
                 </div>
             </div>
