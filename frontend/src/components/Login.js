@@ -11,8 +11,8 @@ function Login(props) {
 
     //we don't want the body to be dark when we're in the login page
     // that's why we remove it, if it exists
-    const modalElement = document.querySelector(".modal-backdrop");
-    if (modalElement) modalElement.remove();
+    // const modalElement = document.querySelector(".modal-backdrop");
+    // if (modalElement) modalElement.remove();
 
     async function handleSubmit(event) {
         event.preventDefault();

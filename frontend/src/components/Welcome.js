@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import "../styles/Welcome.css"
+import UserContext from './UserContext';
 
 
 function Welcome(props) {
     const navigate = useNavigate();
+    const { setShowErrorModal } = useContext(UserContext);
     function handleSubmit(event) {
         event.preventDefault();
         if (props.isLoggedIn) {
@@ -35,8 +37,7 @@ function Welcome(props) {
                                 style={{ width: "150px", marginLeft: "10px" }}
                                 type="submit"
                                 className="btn btn-primary"
-                                data-toggle="modal"
-                                data-target="#errorModal"
+                                onClick={() => setShowErrorModal(true)}
                             >Search Meal</button>
                     }
                 </form>

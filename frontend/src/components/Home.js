@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Welcome from './Welcome'
 import Meals from './Meals'
 import ErrorModal from './ErrorModal'
+import LogoutModal from './LogoutModal';
 
 function Home(props) {
     const [item, setItem] = useState("");
@@ -12,6 +13,7 @@ function Home(props) {
             <h1 style={{ textAlign: "center", margin: "50px 0" }}>All Categories</h1>
             <Meals searchName={item} isLoggedIn={props.isLoggedIn} />
             <ErrorModal />
+            <LogoutModal />
         </>
 
     )

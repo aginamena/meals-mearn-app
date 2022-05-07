@@ -7,9 +7,13 @@ import ViewCategory from './components/ViewCategory';
 import links from "./utils/urls";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import UserContext from "./components/UserContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+
   useEffect(
     () => {
       const options = {
@@ -25,15 +29,28 @@ function App() {
     }
     , [])
 
+  const stateValues =
+  {
+    isLoggedIn,
+    setIsLoggedIn,
+    showLogoutModal,
+    setShowLogoutModal,
+    showErrorModal,
+    setShowErrorModal
+  }
+
   return (
     <Router>
-      <Header isLoggedIn={isLoggedIn} />
-      <Routes>
-        <Route exact path='/' element={< Home isLoggedIn={isLoggedIn} />}></Route>
-        <Route exact path='/viewcategory/:name' element={< ViewCategory />}></Route>
-        <Route exact path="/login" element={<Login loginUser={() => setIsLoggedIn(true)} />}></Route>
-        <Route exact path="/signup" element={<SignUp loginUser={() => setIsLoggedIn(true)} />}></Route>
-      </Routes>
+      <UserContext.Provider value={stateValues}>
+        <Header isLoggedIn={isLoggedIn} />
+        <Routes>
+          <Route exact path='/' element={< Home isLoggedIn={isLoggedIn} logoutUser={() => setIsLoggedIn(false)} />}></Route>
+          <Route exact path='/viewcategory/:name' element={< ViewCategory />}></Route>
+          <Route exact path="/login" element={<Login loginUser={() => setIsLoggedIn(true)} />}></Route>
+          <Route exact path="/signup" element={<SignUp loginUser={() => setIsLoggedIn(true)} />}></Route>
+        </Routes>
+      </UserContext.Provider>
+
     </Router>
   );
 }

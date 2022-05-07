@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "../styles/Header.css";
 import { Link } from "react-router-dom"
+import UserContext from './UserContext';
 
 function Header(props) {
+
+    const { setShowLogoutModal } = useContext(UserContext);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light container">
             <Link id="RouterNavLink" to="/">Meals</Link>
@@ -14,13 +18,18 @@ function Header(props) {
                 <div className="navbar-nav">
                     {
                         props.isLoggedIn ?
-                            <Link to="/login">
-                                <button type="button" className="btn btn-primary">Log out</button>
-                            </Link>
+                            // <Link to="/login">
+
+                            // </Link>
+                            <button type="button" className="btn btn-primary"
+                                onClick={() => setShowLogoutModal(true)}
+                            >Log out</button>
                             :
                             <>
                                 <Link to="/login">
-                                    <button type="button" className="btn btn-primary">Log in</button>
+                                    <button type="button" className="btn btn-primary"
+                                    // onClick={() => }
+                                    >Log in</button>
                                 </Link>
 
                                 <Link to="/signup">
