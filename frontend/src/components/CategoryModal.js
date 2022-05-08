@@ -1,41 +1,63 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../styles/Modal.css"
+import { Modal, Button, Image } from "react-bootstrap"
+import UserContext from './UserContext'
+import Loading from 'react-loading'
 
-function CategoryModal(props) {
+function CategoryModal() {
+    const { showCategory, modelId, shouldShowCategory } = useContext(UserContext)
+    const [data, setData] = useState()
+    const [loading, setLoading] = useState(true)
+    useEffect(
+        () => {
+            async function getData() {
+                const response = await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + modelId)
+                const mealInfo = await response.json();
+                setData(mealInfo.meals[0]);
+                setLoading(false);
+            }
+            // if the modelId isn't null, we get the data
+            modelId && getData()
+        }
+        , [modelId])
     return (
-        <div className="modal fade" id="categoryModal" role="dialog" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">{props.name}</h5>
-
-                    </div>
-                    <div className="modal-body">
-                        <div>
-                            <img src={props.image}></img>
-                            <div style={{ margin: "20px 0" }}>
-                                {
-                                    props.tags && <div style={{ display: "flex", alignItems: "center" }}>
-                                        <h5 style={{ marginRight: "20px" }}>Tags:</h5>
-                                        <small>{props.tags}</small>
-                                    </div>
-                                }
-
-                                <a href={props.youtubeTutorial} target="_blank">Youtube tutorial</a>
-                            </div>
-
+        <Modal show={showCategory} onHide={() => shouldShowCategory(false)}>
+            {
+                !loading &&
+                <>
+                    <Modal.Header closeButton>
+                        <Modal.Title>{data.strMeal}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <img src={data.strMealThumb} />
+                        <div style={{ margin: "20px 0" }}>
+                            {
+                                data.strTags && <div style={{ display: "flex", alignItems: "center" }}>
+                                    <h5 style={{ marginRight: "20px" }}>Tags:</h5>
+                                    <small>{data.strTags}</small>
+                                </div>
+                            }
+                            <a href={data.strYoutube} target="_blank">Youtube tutorial</a>
                         </div>
+
                         <div>
                             <h3>Instructions</h3>
-                            <div>{props.instructions}</div>
+                            <div>{data.strInstructions}</div>
                         </div>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div >
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => shouldShowCategory(false)}>
+                            This meals is already added to your favourates
+                        </Button>
+                        <Button variant="primary" onClick={() => shouldShowCategory(false)}>
+                            Add to favourates
+                        </Button>
+                    </Modal.Footer>
+                </>
+            }
+
+        </Modal>
     )
 }
 

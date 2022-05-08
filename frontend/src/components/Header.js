@@ -18,9 +18,6 @@ function Header(props) {
                 <div className="navbar-nav">
                     {
                         props.isLoggedIn ?
-                            // <Link to="/login">
-
-                            // </Link>
                             <button type="button" className="btn btn-primary"
                                 onClick={() => setShowLogoutModal(true)}
                             >Log out</button>
@@ -28,7 +25,6 @@ function Header(props) {
                             <>
                                 <Link to="/login">
                                     <button type="button" className="btn btn-primary"
-                                    // onClick={() => }
                                     >Log in</button>
                                 </Link>
 

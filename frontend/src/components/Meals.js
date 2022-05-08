@@ -20,15 +20,6 @@ function Meals({ searchName, isLoggedIn }) {
             setIsLoading(false);
         }
         , [])
-    // async function searchForItem() {
-    //     const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + searchName)
-    //     const data = await response.json()
-    //     // searchedItems = data.meals
-    //     setT(data.meals);
-    //     console.log(t)
-    //     return t.length > 0;
-    // }
-
     return (
         isLoading ?
             <div style={{ display: 'flex', justifyContent: "center", marginBottom: "50px" }}>
@@ -45,6 +36,7 @@ function Meals({ searchName, isLoggedIn }) {
                             key={meal.idCategory}
                             image={meal.strCategoryThumb}
                             isLoggedIn={isLoggedIn}
+                            id={meal.idCategory}
                         />
                     ))
                 }

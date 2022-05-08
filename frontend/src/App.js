@@ -13,21 +13,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
-
-  useEffect(
-    () => {
-      const options = {
-        method: "get",
-        headers: {
-          "content-type": "application/json",
-        }
-      }
-      fetch(links.localhost, options)
-        .then(response => response.json())
-        .then(data => console.log(data));
-
-    }
-    , [])
+  const [showCategory, shouldShowCategory] = useState(false)
+  const [modelId, setModelId] = useState(null);
 
   const stateValues =
   {
@@ -36,7 +23,11 @@ function App() {
     showLogoutModal,
     setShowLogoutModal,
     showErrorModal,
-    setShowErrorModal
+    setShowErrorModal,
+    showCategory,
+    shouldShowCategory,
+    modelId,
+    setModelId
   }
 
   return (
