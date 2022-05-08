@@ -4,3 +4,18 @@
 .navbar .btn-secondary {
   margin-left: 20px;
 }
+#cartContainer {
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#cartContainer > div {
+  position: relative;
+}
+#favouriteItemsCount {
+  position: absolute;
+  top: -15px;
+  right: 0;
+  color: green;
+}

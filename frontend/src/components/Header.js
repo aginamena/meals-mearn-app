@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import "../styles/Header.css";
 import { Link } from "react-router-dom"
 import UserContext from './UserContext';
+import { BsFillCartCheckFill } from "react-icons/bs"
 
 function Header(props) {
 
@@ -18,9 +19,18 @@ function Header(props) {
                 <div className="navbar-nav">
                     {
                         props.isLoggedIn ?
-                            <button type="button" className="btn btn-primary"
-                                onClick={() => setShowLogoutModal(true)}
-                            >Log out</button>
+                            <div id="cartContainer">
+                                <div>
+                                    <BsFillCartCheckFill color='black' fontSize={25} />
+                                    <div id="favouriteItemsCount">0</div>
+                                </div>
+
+                                <button type="button" className="btn btn-primary"
+                                    onClick={() => setShowLogoutModal(true)}
+                                >Log out</button>
+
+                            </div>
+
                             :
                             <>
                                 <Link to="/login">
