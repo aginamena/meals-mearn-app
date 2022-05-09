@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
 import "../styles/Header.css";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import UserContext from './UserContext';
 import { BsFillCartCheckFill } from "react-icons/bs"
+import { Button } from 'react-bootstrap';
 
 function Header(props) {
 
-    const { setShowLogoutModal } = useContext(UserContext);
+    const { setShowLogoutModal, favourites, shoudShowFavourites } = useContext(UserContext);
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light container">
@@ -21,8 +23,10 @@ function Header(props) {
                         props.isLoggedIn ?
                             <div id="cartContainer">
                                 <div>
-                                    <BsFillCartCheckFill color='black' fontSize={25} />
-                                    <div id="favouriteItemsCount">0</div>
+
+                                    <BsFillCartCheckFill color='black' fontSize={25} onClick={() => shoudShowFavourites(true)} />
+
+                                    <div id="favouriteItemsCount">{favourites.length}</div>
                                 </div>
 
                                 <button type="button" className="btn btn-primary"

@@ -2,17 +2,22 @@ const mongoose = require("mongoose");
 
 //creating the user blueprint
 const userSchema = new mongoose.Schema({
-    emailAddress: {
+    name: {
         type: String,
         required: true,
-        unique: true
     },
-    password: {
+    youtubeLink: {
         type: String,
-        required: true
     },
-    favourites: {
-        type: [String]
+    tags: {
+        type: String,
+    },
+    instructions: {
+        type: String,
+    },
+    imageThumbnail: {
+
+        type: Buffer
     }
 })
 

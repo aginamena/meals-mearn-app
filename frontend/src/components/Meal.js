@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CategoryModal from './CategoryModal';
 import UserContext from './UserContext';
 
-function Meal({ name, description, image, ViewCategory, tags, instructions, youtube, isLoggedIn, id }) {
+function Meal({ name, description, image, ViewCategory, tags, isLoggedIn, id }) {
     const { setShowErrorModal, shouldShowCategory,
-        setModelId } = useContext(UserContext);
-
+        setModelId, favourites } = useContext(UserContext);
+    const { userId } = useParams();
     return (
 
         <div className="card">

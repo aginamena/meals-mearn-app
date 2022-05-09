@@ -4,6 +4,7 @@ import ReactLoading from 'react-loading';
 import Meal from './Meal';
 import "../styles/ViewCategory.css"
 import CategoryModal from './CategoryModal';
+import FavouritesModal from './FavouritesModal';
 
 
 function ViewCategory() {
@@ -50,6 +51,7 @@ function ViewCategory() {
                         <div id="empty">{name} is out of stock</div>
                 }
                 <CategoryModal />
+                <FavouritesModal />
             </>
 
     )

@@ -3,11 +3,14 @@ import "../styles/Modal.css"
 import { Modal, Button, Image } from "react-bootstrap"
 import UserContext from './UserContext'
 import Loading from 'react-loading'
+import { useParams } from 'react-router-dom'
 
 function CategoryModal() {
-    const { showCategory, modelId, shouldShowCategory } = useContext(UserContext)
+    const { showCategory, modelId, shouldShowCategory, favourites
+        , setFavourites, userId } = useContext(UserContext)
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
+
     useEffect(
         () => {
             async function getData() {
@@ -20,6 +23,14 @@ function CategoryModal() {
             modelId && getData()
         }
         , [modelId])
+
+    async function addToFavourates() {
+        //sending model id to backend
+        const response = await fetch("http://localhost:9000/user/addToFavourite/" + userId + "/" + modelId, { method: "put" });
+        const data = await response.json();
+        setFavourites(data.favourites);
+        shouldShowCategory(false)
+    }
     return (
         <Modal show={showCategory} onHide={() => shouldShowCategory(false)}>
             {
@@ -47,12 +58,11 @@ function CategoryModal() {
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => shouldShowCategory(false)}>
-                            This meals is already added to your favourates
-                        </Button>
-                        <Button variant="primary" onClick={() => shouldShowCategory(false)}>
-                            Add to favourates
-                        </Button>
+                        {
+                            favourites.includes(modelId) ?
+                                <Button variant="primary" onClick={() => shouldShowCategory(false)}>This meals is already added to your favourates</Button>
+                                : <Button variant="primary" onClick={() => addToFavourates()}>Add to favourites</Button>
+                        }
                     </Modal.Footer>
                 </>
             }

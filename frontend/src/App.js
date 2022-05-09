@@ -15,6 +15,9 @@ function App() {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showCategory, shouldShowCategory] = useState(false)
   const [modelId, setModelId] = useState(null);
+  const [favourites, setFavourites] = useState([]);
+  const [userId, setUserId] = useState("");
+  const [showFavourites, shoudShowFavourites] = useState(false);
 
   const stateValues =
   {
@@ -27,7 +30,13 @@ function App() {
     showCategory,
     shouldShowCategory,
     modelId,
-    setModelId
+    setModelId,
+    favourites,
+    setFavourites,
+    userId,
+    setUserId,
+    showFavourites,
+    shoudShowFavourites
   }
 
   return (

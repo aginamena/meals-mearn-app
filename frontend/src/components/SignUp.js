@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import UserContext from './UserContext';
 
 function SignUp(props) {
     const [error, setError] = useState(false);
@@ -9,7 +10,7 @@ function SignUp(props) {
     const [confirmPassword, setConfirmPassword] = useState("")
 
     const navigate = useNavigate();
-
+    const { setUserId, setFavourites } = useContext(UserContext)
     async function handleSubmit(event) {
         event.preventDefault();
         //verifying if the email address dooesn't exists
@@ -47,6 +48,8 @@ function SignUp(props) {
                     setError(true)
                 else {
                     props.loginUser();
+                    setUserId(data._id)
+                    setFavourites(data.favourites)
                     navigate("/")
                 }
             });

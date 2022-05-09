@@ -3,6 +3,7 @@ import Welcome from './Welcome'
 import Meals from './Meals'
 import ErrorModal from './ErrorModal'
 import LogoutModal from './LogoutModal';
+import FavouritesModal from './FavouritesModal';
 
 function Home(props) {
     const [item, setItem] = useState("");
@@ -14,6 +15,7 @@ function Home(props) {
             <Meals searchName={item} isLoggedIn={props.isLoggedIn} />
             <ErrorModal />
             <LogoutModal />
+            <FavouritesModal />
         </>
 
     )
