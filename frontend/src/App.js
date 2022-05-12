@@ -8,6 +8,7 @@ import links from "./utils/urls";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import UserContext from "./components/UserContext";
+import Favourite from "./components/Favourite";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,6 +49,7 @@ function App() {
           <Route exact path='/viewcategory/:name' element={< ViewCategory />}></Route>
           <Route exact path="/login" element={<Login loginUser={() => setIsLoggedIn(true)} />}></Route>
           <Route exact path="/signup" element={<SignUp loginUser={() => setIsLoggedIn(true)} />}></Route>
+          <Route exact path="/favourite" element={<Favourite />}></Route>
         </Routes>
       </UserContext.Provider>
 

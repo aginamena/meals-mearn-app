@@ -15,7 +15,7 @@ function Home(props) {
             <Meals searchName={item} isLoggedIn={props.isLoggedIn} />
             <ErrorModal />
             <LogoutModal />
-            <FavouritesModal />
+            {/* <FavouritesModal /> */}
         </>
 
     )

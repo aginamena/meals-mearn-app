@@ -51,7 +51,7 @@ function ViewCategory() {
                         <div id="empty">{name} is out of stock</div>
                 }
                 <CategoryModal />
-                <FavouritesModal />
+                // <FavouritesModal />
             </>
 
     )

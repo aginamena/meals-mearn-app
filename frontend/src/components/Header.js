@@ -23,9 +23,11 @@ function Header(props) {
                         props.isLoggedIn ?
                             <div id="cartContainer">
                                 <div>
-
-                                    <BsFillCartCheckFill color='black' fontSize={25} onClick={() => shoudShowFavourites(true)} />
-
+                                    <Link to="/favourite">
+                                        <BsFillCartCheckFill color='black' fontSize={25}
+                                        // onClick={() => shoudShowFavourites(true)} 
+                                        />
+                                    </Link>
                                     <div id="favouriteItemsCount">{favourites.length}</div>
                                 </div>
 
