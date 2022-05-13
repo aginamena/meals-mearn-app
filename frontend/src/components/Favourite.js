@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Meal from './Meal';
 import UserContext from './UserContext';
-
+import { Container, Row, Card, Col, Button } from 'react-bootstrap';
 
 function Favourite() {
-    const { favourites } = useContext(UserContext)
+    const { favourites, userId, setFavourites } = useContext(UserContext)
     const [meals, setMeals] = useState([]);
     useEffect(() => {
         async function getMeals() {
@@ -18,21 +18,34 @@ function Favourite() {
         }
         getMeals();
     }, [])
+    async function removeFavouriteMeal(mealId) {
+        const response = await fetch("http://localhost:9000/user/" + userId + "/" + mealId, {
+            method: "delete"
+        })
+        const data = await response.json();
+        const filteredList = meals.filter(meal => meal.idMeal !== mealId)
+        setFavourites(data);
+        setMeals(filteredList);
+
+    }
 
     return (
-        <div>
-            should be here
-            {
-                // meals && meals.map((meal, index) => (
-                //     <Meal
-                //         name = {meal.strMeal}
-                //         image = {meal.strMealThumb}
-                //         tags = {meal.strTags}
-                //     />
-                //     // <div key={index}>here</div>
-                // ))
-            }
-        </div>
+        <Container style={{ marginBottom: "50px" }}>
+            <h3 style={{ margin: "20px auto" }}>My favourites</h3>
+            <Row xs={1} md={2} className="g-4">
+                {meals.map((meal, index) => (
+                    <Col key={index}>
+                        <Card>
+                            <Card.Img variant="top" src={meal.strMealThumb} />
+                            <Card.Body>
+                                <Card.Title>{meal.strMeal}</Card.Title>
+                            </Card.Body>
+                            <Button variant="danger" onClick={() => removeFavouriteMeal(meal.idMeal)}>Remove from favourites</Button>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
+        </Container>
 
 
     )

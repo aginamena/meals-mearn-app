@@ -27,4 +27,15 @@ userRouter.put("/addToFavourite/:userId/:mealId", async (req, res) => {
     res.json(user);
 })
 
+//delete meal from favourites
+userRouter.delete("/:userId/:mealId", async (req, res) => {
+    const { userId, mealId } = req.params;
+    const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { favourites: mealId } },
+        { new: true }
+    )
+    res.json(user.favourites);
+})
+
 module.exports = userRouter;
